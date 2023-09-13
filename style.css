@@ -3,7 +3,9 @@ html {
   box-sizing: border-box;
 }
 
-*, *:before, *:after {
+*,
+*:before,
+*:after {
   box-sizing: inherit;
 }
 
@@ -28,10 +30,11 @@ img {
   flex-wrap: wrap;
   padding: 1rem;
   gap: 1rem;
+  text-align: center;
 }
 
 /* Kartička uživatele */
-.karta {
+.user-card {
   background-color: #fff;
   border-radius: 10px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
@@ -39,62 +42,75 @@ img {
   width: 340px;
   display: flex;
   flex-direction: column;
-  align-items: center ;
+  align-items: center;
 }
 
 /* Status uživatele */
-.cena {
+.user-card__status {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+}
+
+.user-card__tag {
   background-color: rgb(204, 204, 204);
   border-radius: 40px;
   padding: 0.5rem;
 }
 
-.dostupny {
-  border-radius: 40px;
-  padding: 0.5rem;
+.user-card--available {
   background-color: rgb(105, 228, 126);
 }
 
-.nedostupny {
-  border-radius: 40px;
-  padding: 0.5rem;
+.user-card--unavailable {
   background-color: rgb(255, 123, 97);
 }
 
 /* Nastavení avatara */
-.kulata-fotka {
+.user-card__avatar {
   border-radius: 50%;
   overflow: hidden;
   width: 100px;
   height: 100px;
 }
 
-img {
+.user-card__avatar img {
   width: 100%;
   height: 100%;
   object-fit: cover;
 }
 
 /* Uživatelský text */
-.text {
+.user-card__info {
   margin-bottom: 10px;
 }
 
-.nadpis {
+.user-card__heading {
   font-size: 1.5rem;
   margin: 0.5rem 0;
 }
 
 /* První písmeno podpisu větší */
-.popis-uživatele {
+.user-card__description::first-letter {
+  font-size: 1.2rem;
+}
+
+.user-card__description {
   font-size: 1rem;
   margin: 0;
   line-height: 1.5;
 }
 
 /* Udělat seznam se srdíčky místo odrážek */
-.konicky {
+.user-card__hobby li::before {
+  content: "❤️";
+}
+
+.user-card__hobby {
   padding: 0;
+  list-style-type: none;
+  display: flex;
+  justify-content: space-evenly;
 }
 
 /* Navštívené odkazy jinou barvou */
@@ -103,16 +119,18 @@ img {
 a {
   text-decoration: none;
   color: #007bff;
+  position: relative;
 }
 
-.navstiveny {
+a:visited {
   color: #0065d1;
 }
 
-.podtrzeni-tlacitka {
+a:hover::after {
+  content: "";
   width: 100%;
   height: 5px;
-  background: linear-gradient(270deg, #e1466a 0%, rgba(131,217,255,1) 82%, rgba(131,206,255,1) 100%);
+  background: linear-gradient(270deg, #e1466a 0%, rgba(131, 217, 255, 1) 82%, rgba(131, 206, 255, 1) 100%);
   position: absolute;
   bottom: -4px;
   left: 0;
@@ -120,7 +138,7 @@ a {
 
 /* Tlačítka */
 
-.tlačitko {
+.user-card__button {
   padding: 10px 20px;
   background-color: #007bff;
   color: #fff;
@@ -129,22 +147,32 @@ a {
 }
 
 /* Barvy podle platformy*/
+.user-card__buttons {
+  display: flex;
+  gap: 5px;
+}
 
-.twitter {
+.user-card__button--twitter {
   background-color: rgb(29, 155, 240);
   border: 3px solid rgb(29, 155, 240);
 }
 
-.facebook {
+.user-card__button--facebook {
   background-color: #3b5998;
   border: 3px solid #3b5998;
 }
 
-.instagram {
+.user-card__button--instagram {
   background-color: #E1466A;
   border: 3px solid #E1466A;
 }
 
 /* Po najetí na tlačítko černý border */
+.user-card__button:hover {
+  border: 2px solid #000;
+}
 
 /* Při kliknutí se tlačítko zmenší o pixel */
+.user-card__button:active {
+  transform: scale(0.9);
+}
